@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeMirror Python Autocomplete Example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.js"></script>
+</head>
+
+<body>
+  <textarea id="code"></textarea>
+  <script>
+    // CodeMirror setup
+    const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      mode: "python", // Set mode to Python
+      extraKeys: {
+        "Ctrl-Space": "autocomplete" // Trigger autocomplete on Ctrl+Space
+      },
+      lineWrapping: true,
+      styleActiveLine: true,
+      hintOptions: {
+        hint: CodeMirror.hint.python // Use built-in Python hinting
+      }
+    });
+
+  </script>
+</body>
+
+</html>
