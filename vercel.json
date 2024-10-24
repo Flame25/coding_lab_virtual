@@ -2,7 +2,8 @@
   "routes": [
     { "src": "/playground", "dest": "/playground.html" },
     { "src": "/", "dest": "/index.html" },
-    { "src": "/games", "dest": "/games.html" }
+    { "src": "/games", "dest": "/games.html" },
+    {"src": "/challenges", "dest": "/challenges.html"}
   ]
 }
 
