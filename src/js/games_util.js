@@ -10,12 +10,12 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function drag(event) {
+window.drag = function(event) {
   event.dataTransfer.setData('text', event.target.id);
 }
 
 // Drop a block into the chosen area to add it to the sequence
-function dropToSequence(event) {
+window.dropToSequence = function(event) {
   event.preventDefault();
   let blockId = event.dataTransfer.getData("text");
 
@@ -30,12 +30,12 @@ function dropToSequence(event) {
   }
 }
 
-function allowDrop(event) {
+window.allowDrop = function(event) {
   event.preventDefault();
 }
 
 // Function to simulate the playing of the chosen sequence
-async function playSequence() {
+window.playSequence = async function() {
   let playButton = document.querySelector(".play-button");
 
   // Disable the play button while the sequence is playing
@@ -67,7 +67,7 @@ async function playSequence() {
   playButton.disabled = false;
 }
 
-function droptoRemove(event) {
+window.droptoRemove = function(event) {
   event.preventDefault();
   let blockId = event.dataTransfer.getData('text');
   console.log(blockId);
