@@ -1,88 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code & Games</title>
+    <link rel="stylesheet" href="css/games.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code & Games</title>
-  <link rel="stylesheet" href="css/games.css">
-</head>
-
-<body>
-
-  <nav class="navbar">
-    <div class="logo">MyWebsite</div>
-    <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/playground">Code Playground</a></li>
-      <li><a href="/games">Games</a></li>
-      <li><a href="/challenges">Challenges</a></li>
-    </ul>
-  </nav>
-  <div class="container">
-    <div id="code-panel" class="code-panel">
-      <div class="filler">
-        <h2 id="title">Code Editor</h2>
-        <button id="code">Code</button>
-        <button id="block">Block</button>
-        <button id="run">Run ></button>
-      </div>
-      <div id="code-part">
-        <select id="language-select">
-          <option value="cpp">C++</option>
-          <option value="c">C</option>
-          <option value="python">Python</option>
-          <option value="javascript">JavaScript</option>
-        </select>
-
-        <div style="height: 20px;"></div>
-        <div class="editor-container">
-          <div class="editor" id="editor"></div>
+  <body>
+    <nav class="navbar">
+      <div class="logo">MyWebsite</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/playground">Code Playground</a></li>
+        <li><a href="/challenges">Challenges</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div id="code-panel" class="code-panel">
+        <div class="filler">
+          <h2 id="title">Code Editor</h2>
+          <button id="code">Code</button>
+          <button id="block">Block</button>
+          <button id="run">Run ></button>
         </div>
-      </div>
+        <div id="code-part">
+          <select id="language-select">
+            <option value="cpp">C++</option>
+            <option value="c">C</option>
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+          </select>
 
-      <div id="block-panel" class="block-panel" style="display: none;">
-        <div style="height: 30px;"></div>
-        <div class="flex-container">
-          <div class="block-area" id="blockArea" ondrop="droptoRemove(event)" ondragover="allowDrop(event)">
-            <h3>Blocks</h3>
-            <div id="moveBlock" class="block" draggable="true" ondragstart="drag(event)">Move Forward</div>
-            <div id="rotateBlock" class="block" draggable="true" ondragstart="drag(event)">Rotate 90°</div>
+          <div style="height: 20px"></div>
+          <div class="editor-container">
+            <div class="editor" id="editor"></div>
           </div>
+        </div>
 
-          <!-- Chosen Blocks Area -->
-          <div class="chosen-area" id="chosenArea" ondrop="dropToSequence(event)" ondragover="allowDrop(event)">
-            <h3>Chosen Blocks</h3>
-            <div id="content"></div>
-            <div class="flex-container">
-              <button class="clear-button" onclick="clearSequence()">Clear</button>
-              <button class="play-button" onclick="playSequence()">Play</button>
+        <div id="block-panel" class="block-panel" style="display: none">
+          <div style="height: 30px"></div>
+          <div class="flex-container">
+            <div
+              class="block-area"
+              id="blockArea"
+              ondrop="droptoRemove(event)"
+              ondragover="allowDrop(event)"
+            >
+              <h3>Blocks</h3>
+              <div
+                id="moveBlock"
+                class="block"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                Move Forward
+              </div>
+              <div
+                id="rotateBlock"
+                class="block"
+                draggable="true"
+                ondragstart="drag(event)"
+              >
+                Rotate 90°
+              </div>
+            </div>
+
+            <!-- Chosen Blocks Area -->
+            <div
+              class="chosen-area"
+              id="chosenArea"
+              ondrop="dropToSequence(event)"
+              ondragover="allowDrop(event)"
+            >
+              <h3>Chosen Blocks</h3>
+              <div id="content"></div>
+              <div class="flex-container">
+                <button class="clear-button" onclick="clearSequence()">
+                  Clear
+                </button>
+                <button class="play-button" onclick="playSequence()">
+                  Play
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="game-panel">
-      <h2>Output</h2>
-      <canvas id="gameCanvas"></canvas>
-      <div class="desc">
-        <div class="text-box">
-          <img src="img/icons8-target-100.png" class="target">
-          <p>The Goal</p>
+      <div class="game-panel">
+        <h2>Output</h2>
+        <canvas id="gameCanvas"></canvas>
+        <div class="desc">
+          <div class="text-box">
+            <img src="img/icons8-target-100.png" class="target" />
+            <p>The Goal</p>
+          </div>
+          <p>Goal Description</p>
+          <div style="height: 20px"></div>
+          <div class="text-box">
+            <img src="img/icons8-clipboard-100.png" class="target" />
+            <p>Rules</p>
+          </div>
+          <p>Rules Description</p>
         </div>
-        <p>Goal Description</p>
-        <div style="height: 20px;"></div>
-        <div class="text-box">
-          <img src="img/icons8-clipboard-100.png" class="target">
-          <p>Rules</p>
-        </div>
-        <p>Rules Description</p>
       </div>
     </div>
-  </div>
-  <script type="module" src="js/games.js"></script>
-  <script src="js/games_util.js"></script>
-
-</body>
-
+    <script type="module" src="js/games.js"></script>
+    <script src="js/games_util.js"></script>
+  </body>
 </html>

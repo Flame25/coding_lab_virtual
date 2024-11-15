@@ -52,7 +52,7 @@ function getLanguageExtension(language) {
 document.getElementById("run").addEventListener("click", function () {
   const code = getEditorValue();
   console.log(code);
-  fetch("/api/compile", {
+  fetch("http://localhost:3000/compile", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -71,7 +71,7 @@ document.getElementById("run").addEventListener("click", function () {
 document.getElementById("send").addEventListener("click", function () {
   const code = getEditorValue();
   console.log(code);
-  fetch("/api/send", {
+  fetch("http://localhost:3000/send", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -85,6 +85,9 @@ document.getElementById("send").addEventListener("click", function () {
     .then((response) => response.text())
     .then((result) => {
       document.getElementById("output").innerText = result;
+      if (result == "Success") {
+        updateUserProgress(currentNum + 1);
+      }
     })
     .catch((error) => {
       document.getElementById("output").innerText = "Error: " + error;
@@ -114,6 +117,25 @@ async function getProgress() {
     .select("progress_challenges")
     .eq("email", email);
   return data[0].progress_challenges;
+}
+
+async function updateUserProgress(number) {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const email = session.user.email; // Get email from session
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({ progress_challenges: number })
+    .eq("email", email);
+
+  if (error) {
+    console.error("Error updating user progress:", error.message);
+  } else {
+    console.log("User progress updated successfully:", data);
+    window.location.reload();
+  }
 }
 
 async function loadQuestion(num) {

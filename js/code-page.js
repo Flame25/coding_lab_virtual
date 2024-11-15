@@ -48,7 +48,7 @@ document.getElementById("clear-button").addEventListener("click", cleanOutput);
 document.getElementById("run-button").addEventListener("click", function () {
   const code = getEditorValue();
   console.log(code);
-  fetch("/api/compile", {
+  fetch("http://localhost:3000/compile", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
