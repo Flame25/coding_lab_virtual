@@ -11,5 +11,6 @@
       "src": "js/server.js",
       "use": "@vercel/node"
     }
+  ]
 }
 
