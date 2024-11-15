@@ -1,70 +1,65 @@
 // server.js
-
 const express = require("express");
 const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Example POST routes
 app.post("/compile", (req, res) => {
-  // Collect the POST data
-  req.on("data", (chunk) => {
-    body += chunk;
-  });
+  // Collect the code and language from the request body
+  const { code, lang } = req.body;
 
-  // Once the full body is received, process the code
-  req.on("end", () => {
-    // Parse the code from the form data
-    const parsedBody = querystring.parse(body);
-    const code = parsedBody.code;
-    const lang = parsedBody.lang;
+  if (!code || !lang) {
+    return res.status(400).json({ error: "Missing code or language" });
+  }
 
-    let compileCommand = "";
-    // Save the code to a file (for example, `code.c` or `code.cpp`)
-    let fileName = "";
-    if (lang == "cpp") {
-      fileName = "code.cpp";
-      compileCommand = `g++ ${fileName} -o output`;
-    } else if (lang == "c") {
-      fileName = "code.c";
-      compileCommand = `gcc ${fileName} -o output`;
-    } else if (lang == "python") {
-      fileName = "code.py";
-      compileCommand = `python3 ${fileName}`;
-    }
+  let compileCommand = "";
+  let fileName = "";
 
+  if (lang === "cpp") {
+    fileName = "code.cpp";
+    compileCommand = `g++ ${fileName} -o output`;
+  } else if (lang === "c") {
+    fileName = "code.c";
+    compileCommand = `gcc ${fileName} -o output`;
+  } else if (lang === "python") {
+    fileName = "code.py";
+    compileCommand = `python3 ${fileName}`;
+  } else {
+    return res.status(400).json({ error: "Unsupported language" });
+  }
+
+  // Write the code to a temporary file in memory or use a temporary file system
+  try {
     fs.writeFileSync(fileName, code);
 
     // Compile the code
     exec(compileCommand, (err, stdout, stderr) => {
       if (err) {
-        res.writeHead(200, { "Content-Type": "text/plain" });
-        res.end(`Compilation Error:\n${stderr}`);
-      } else {
-        // If compilation is successful, run the code
+        return res.status(500).json({ error: `Compilation Error: ${stderr}` });
+      }
 
-        if (lang == "cpp" || lang == "c") {
-          exec("./output", (runErr, runStdout, runStderr) => {
-            if (runErr) {
-              res.writeHead(200, { "Content-Type": "text/plain" });
-              res.end(`Runtime Error:\n${runStderr}`);
-            } else {
-              res.writeHead(200, { "Content-Type": "text/plain" });
-              res.end(`${runStdout}`);
-            }
-          });
-        } else if (lang == "python") {
-          const result = stdout.trim(); // Trim any extra whitespace or newlines
-          res.writeHead(200, { "Content-Type": "text/plain" });
-          res.end(result);
-        }
+      // If compilation is successful, run the code
+      if (lang === "cpp" || lang === "c") {
+        exec("./output", (runErr, runStdout, runStderr) => {
+          if (runErr) {
+            return res
+              .status(500)
+              .json({ error: `Runtime Error: ${runStderr}` });
+          }
+          return res.status(200).json({ output: runStdout });
+        });
+      } else if (lang === "python") {
+        // For Python, just return the result of the execution
+        const result = stdout.trim();
+        return res.status(200).json({ output: result });
       }
     });
-  });
-
-  // Respond with some message
-  res.status(200).json({ message: "Code compiled", code, lang });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: `Error writing file: ${error.message}` });
+  }
 });
 
 app.post("/send", (req, res) => {
