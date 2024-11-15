@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground</title>
+    <link rel="stylesheet" href="css/code-page.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">MyWebsite</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/playground">Code Playground</a></li>
+        <li><a href="/games">Games</a></li>
+        <li><a href="/challenges">Challenges</a></li>
+      </ul>
+    </nav>
+    <div id="sidebar">
+      <img
+        src="img/icons8-python-100.png"
+        class="img-sidebar"
+        alt="Python"
+        id="python_lang"
+      />
+      <img src="img/icons8-c-100.png" class="img-sidebar" alt="C" id="c_lang" />
+      <img
+        src="img/icons8-cpp-100.png"
+        class="img-sidebar"
+        alt="C++"
+        id="cpp_lang"
+      />
+    </div>
+
+    <div class="container">
+      <div class="code-area">
+        <div class="tab-container">
+          <div class="centered-box" id="centered-box">this text</div>
+          <div class="filler">
+            <div class="warning">CPP & C doesn't have autocomplete yet</div>
+            <button id="run-button">Run ></button>
+          </div>
+        </div>
+        <div class="code-container">
+          <div class="editor" id="editor"></div>
+        </div>
+      </div>
+      <div class="run-area">
+        <div class="random-box">
+          <div class="random-text">Output</div>
+          <div class="settings-container">
+            <button id="clear-button">Clear</button>
+          </div>
+        </div>
+        <pre id="output"></pre>
+      </div>
+    </div>
+    <script type="module" src="js/code-page.js"></script>
+  </body>
+</html>

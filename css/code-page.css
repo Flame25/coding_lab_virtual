@@ -6,18 +6,20 @@ body {
 #sidebar {
   display: flex;
   position: fixed;
-  justify-content: center;
+  justify-content: space-between;
   left: -80px;
   top: 25%;
   width: 85px;
   height: 360px;
-  background-color: #EDECEC;
+  background-color: #edecec;
   opacity: 0.6;
   color: black;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
   transition: left 0.3s ease;
   flex-direction: column;
   padding-left: 1%;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 #sidebar.show {
@@ -35,6 +37,9 @@ body {
   display: flex;
   flex-direction: row-reverse;
   margin-left: auto;
+  margin-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 7px;
 }
 
 .random-box {
@@ -77,7 +82,9 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
   font-weight: bold;
   width: 100px;
   height: 30px;
@@ -96,13 +103,16 @@ body {
 }
 
 #run-button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-weight: bold;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
   width: 100px;
   height: 30px;
   margin-top: 4px;
@@ -156,7 +166,7 @@ body {
   justify-content: flex-start;
 }
 
-#compiled {
+#output {
   width: 800px;
   height: 80vh;
   resize: none;
@@ -212,5 +222,37 @@ body {
 }
 
 .img-sidebar:hover {
-  opacity: 0.50;
+  opacity: 0.5;
+}
+
+.login-button {
+  display: flex;
+  border: 1px;
+  border-radius: 5px;
+  background-color: #2575fc;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 10px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.logout-button {
+  display: flex;
+  font-size: 18px;
+  border: 1px;
+  border-radius: 5px;
+  background-color: #c7122d;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 10px;
+  padding-left: 20px;
+}
+
+.logout-button .logout-action:hover {
+  color: #ff3333;
 }

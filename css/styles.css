@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
   line-height: 1.6;
 }
@@ -181,4 +181,36 @@ header {
 
 .nav-links a:hover {
   color: #ff6347;
+}
+
+.login-button {
+  display: flex;
+  border: 1px;
+  border-radius: 5px;
+  background-color: #2575fc;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 10px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.logout-button {
+  display: flex;
+  font-size: 18px;
+  border: 1px;
+  border-radius: 5px;
+  background-color: #c7122d;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 10px;
+  padding-left: 20px;
+}
+
+.logout-button .logout-action:hover {
+  color: #ff3333;
 }
