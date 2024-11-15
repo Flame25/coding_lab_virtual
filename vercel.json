@@ -4,6 +4,12 @@
     { "src": "/", "dest": "/index.html" },
     { "src": "/games", "dest": "/games.html" },
     {"src": "/challenges", "dest": "/challenges.html"}
-  ]
+  ],
+
+    "builds": [
+    {
+      "src": "js/server.js",
+      "use": "@vercel/node"
+    }
 }
 
