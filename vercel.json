@@ -3,7 +3,9 @@
     { "src": "/playground", "dest": "/playground.html" },
     { "src": "/", "dest": "/index.html" },
     { "src": "/games", "dest": "/games.html" },
-    {"src": "/challenges", "dest": "/challenges.html"}
+    {"src": "/challenges", "dest": "/challenges.html"},
+    {"src": "/compile", "dest":"js/server.js"},
+    {"src": "/send", "dest":"js/server.js"}
   ],
 
     "builds": [
