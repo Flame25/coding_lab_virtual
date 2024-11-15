@@ -52,7 +52,7 @@ function getLanguageExtension(language) {
 document.getElementById("run").addEventListener("click", function () {
   const code = getEditorValue();
   console.log(code);
-  fetch("http://localhost:3000/compile", {
+  fetch("/api/compile", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -71,7 +71,7 @@ document.getElementById("run").addEventListener("click", function () {
 document.getElementById("send").addEventListener("click", function () {
   const code = getEditorValue();
   console.log(code);
-  fetch("http://localhost:3000/send", {
+  fetch("/api/send", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
